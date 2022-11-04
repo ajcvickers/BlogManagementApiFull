@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
-using WebApi_Net7_EF6;
+using WebApi_Net7_EF7_Minimal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +11,6 @@ builder.Services.AddDbContextPool<BlogsContext>(
     {
         b.UseSqlServer("name=Blogs");
     });
-
-// builder.Services.AddScoped<BlogsContext>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(
