@@ -1,22 +1,25 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using UnicornSupplies;
+using WebApi_Net7_EF6;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContextPool<UnicornSuppliesContext>(
+builder.Services.AddDbContextPool<BlogsContext>(
     b =>
     {
-        b.UseSqlServer("name=UnicornSupplies");
+        b.UseSqlServer("name=Blogs");
     });
 
+// builder.Services.AddScoped<BlogsContext>();
+
 builder.Services.AddControllers()
-    .AddNewtonsoftJson(s =>
-    {
-        s.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-    });
+    .AddJsonOptions(
+        options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
-namespace WebApi_Framework48_EF6;
+namespace WebApi_Net7_EF6;
 
 public class BlogsContext : DbContext
 {
